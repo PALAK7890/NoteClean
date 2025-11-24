@@ -1,22 +1,36 @@
 import { useNavigate } from 'react-router-dom';
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Navbar from './navbar';
 import Footer from './footer';
+import "./styling/home.css"
 
 const Home = () => {
   const navigate = useNavigate();
 
-  const handleCreateNote = () => {
-    const user = localStorage.getItem("user");  // or token
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-    if (!user) {
-      alert("You must be logged in to create a note!");
-      return navigate("/login");
-    }
+  const notes = [
+    { id: 1, title: "Work Plan", text: "Office tasks...", category: "Work" },
+    { id: 2, title: "Study Notes", text: "React hooks summary...", category: "Study" },
+    { id: 3, title: "Personal Goals", text: "Morning routine...", category: "Personal" },
+  ];
 
-    navigate("/create");
-  };
+  const filteredNotes =
+    selectedCategory === "All"
+      ? notes
+      : notes.filter((note) => note.category === selectedCategory);
+
+const handleCreateNote = () => {
+  const token = localStorage.getItem("token");  
+
+  if (!token) {
+    alert("You must be logged in to create a note!");
+    return navigate("/login");
+  }
+
+  navigate("/create");
+};
 
   return (
     <>
@@ -41,17 +55,38 @@ const Home = () => {
           + Create New Note
         </motion.button>
 
+        {/* -----------------------
+           CATEGORY FILTER UI
+        ------------------------ */}
+        <div className="category-section">
+          {["All", "Work", "Personal", "Study", "Important"].map((cat) => (
+            <button
+              key={cat}
+              className={`category-btn ${
+                selectedCategory === cat ? "active-category" : ""
+              }`}
+              onClick={() => setSelectedCategory(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* -----------------------
+           FILTERED NOTES LIST
+        ------------------------ */}
         <div className="notes-grid">
-          {[1, 2, 3].map((i) => (
+          {filteredNotes.map((note, i) => (
             <motion.div
-              key={i}
+              key={note.id}
               className="note-card"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
             >
-              <h2 className="note-title">Sample Note {i}</h2>
-              <p className="note-text">This is a preview of note {i}...</p>
+              <h2 className="note-title">{note.title}</h2>
+              <p className="note-text">{note.text}</p>
+              <span className="note-category-tag">{note.category}</span>
             </motion.div>
           ))}
         </div>

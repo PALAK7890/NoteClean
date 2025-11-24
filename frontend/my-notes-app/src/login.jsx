@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import './App.css'
+import './styling/login.css'
 import { useNavigate } from 'react-router-dom';
 import loginImg from './assests/login_photu.png';
 import googleLogo from './assests/ggl.png';
@@ -17,7 +17,7 @@ const Login =()=>{
     e.preventDefault();
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
+      const res = await fetch("http://localhost:8080/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

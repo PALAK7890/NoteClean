@@ -1,0 +1,85 @@
+/* ──────────────── GLOBAL ──────────────── */
+.about-container {
+  max-width: 900px;
+  margin: 70px auto;
+  padding: 25px 20px;
+  background: linear-gradient(135deg, rgba(173, 216, 255, 0.25), rgba(230, 210, 255, 0.25));
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(90, 63, 140, 0.08);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ──────────────── TITLES ──────────────── */
+.about-title {
+  font-size: 38px;
+  font-weight: 700;
+  color: #5a4db7; /* deep lilac-blue */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.about-subtitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: #3f2d72; /* lilac */
+  margin-top: 25px;
+  margin-bottom: 12px;
+}
+
+/* ──────────────── PARAGRAPHS ──────────────── */
+.about-intro {
+  font-size: 16px;
+  color: #4f3f91; /* lilac-blue text */
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+/* ──────────────── LINKS ──────────────── */
+.about-intro a {
+  color: #5a4db7; /* deep lilac */
+  font-weight: 600;
+  text-decoration: underline;
+  transition: 0.2s ease;
+}
+
+.about-intro a:hover {
+  color: #3f2d72;
+}
+
+/* ──────────────── FEATURES LIST ──────────────── */
+.about-features {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+}
+
+.about-features li {
+  background: #f0f2ff; /* soft lilac-blue card */
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  color: #3f2d72;
+  border: 1px solid #d0cfff;
+  transition: 0.2s ease;
+}
+
+.about-features li:hover {
+  background: #e1e4ff; /* hover effect */
+  transform: translateX(3px);
+  box-shadow: 0 4px 12px rgba(63, 45, 114, 0.1);
+}
+
+/* ──────────────── RESPONSIVE ──────────────── */
+@media (max-width: 768px) {
+  .about-title {
+    font-size: 32px;
+  }
+
+  .about-subtitle {
+    font-size: 20px;
+  }
+
+  .about-intro {
+    font-size: 15px;
+  }
+}

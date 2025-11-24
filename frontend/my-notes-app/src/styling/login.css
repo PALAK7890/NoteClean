@@ -1,0 +1,115 @@
+/* FULL PAGE */
+.Signin {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #e9e7ff, #d7e9ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+}
+
+/* MAIN CENTER BOX */
+.Main-Signin-Container {
+  width: 380px;
+  padding: 35px 30px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 25px rgba(120, 115, 170, 0.22);
+}
+
+/* TITLE */
+.Signin-title h2 {
+  color: #6b5cd6;
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.Signin-title p {
+  margin-top: 5px;
+  color: #6f6a8f;
+  font-size: 14px;
+}
+
+/* INPUTS */
+.form-box input {
+  width: 100%;
+  padding: 13px 15px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.75);
+  outline: none;
+  font-size: 15px;
+  color: #555;
+  box-shadow: 0 2px 6px rgba(140, 130, 200, 0.15);
+}
+
+.form-box input:focus {
+  background: white;
+  box-shadow: 0 3px 9px rgba(120, 110, 180, 0.25);
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #9f9bff, #7dceff);
+  color: white;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 4px 12px rgba(100, 90, 180, 0.25);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 18px rgba(100, 90, 180, 0.32);
+}
+
+/* TEXT + LINKS */
+.Signin-boxes p {
+  text-align: center;
+  color: #6a6792;
+  font-size: 14px;
+  margin-top: 18px;
+}
+
+.Signin-boxes a {
+  color: #7b74ff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.Signin-boxes a:hover {
+  text-decoration: underline;
+}
+
+/* SOCIAL LOGIN */
+.social-login {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+.social-icon {
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  transition: 0.2s;
+  border-radius: 50%;
+  padding: 4px;
+  background: rgba(255,255,255,0.6);
+  box-shadow: 0 3px 10px rgba(120,110,180,0.2);
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+}

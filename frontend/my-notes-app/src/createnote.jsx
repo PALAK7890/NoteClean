@@ -1,54 +1,118 @@
-import React, { useState } from "react";
-import "./app.css";
+import React, { useRef, useState } from "react";
+import { motion } from "framer-motion";
+import "./styling/createnote.css";
 
-const CreateNote = () => {
+export default function NoteEditor() {
+  const editorRef = useRef(null);
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [highlightColor, setHighlightColor] = useState("#fff59d");
 
-  const handleSave = () => {
-    if (!title.trim() || !content.trim()) {
-      alert("Please fill all the fields!");
+  const exec = (command, value = null) => {
+    if (editorRef.current) editorRef.current.focus();
+
+    if (command === "highlight") {
+      const useCmd = document.queryCommandSupported("hiliteColor")
+        ? "hiliteColor"
+        : "backColor";
+      document.execCommand(useCmd, false, value || highlightColor);
       return;
     }
 
-    const newNote = {
-      id: Date.now(),
-      title,
-      content,
-    };
+    if (command === "formatBlock") {
+      document.execCommand("formatBlock", false, value);
+      return;
+    }
 
-    const savedNotes = JSON.parse(localStorage.getItem("notes")) || [];
-    savedNotes.push(newNote);
+    document.execCommand(command, false, value);
+  };
 
-    localStorage.setItem("notes", JSON.stringify(savedNotes));
+  const saveNote = async () => {
+    const content = editorRef.current.innerHTML.trim();
 
-    alert("Note created successfully!");
-    setTitle("");
-    setContent("");
+    if (!title.trim() && !content) {
+      alert("Please add title or content");
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
+    try {
+      const res = await fetch("http://localhost:8080/api/notes/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ title, content })
+      });
+
+      const data = await res.json();
+      console.log("Saved:", data);
+
+      setTitle("");
+      editorRef.current.innerHTML = "";
+    } catch (err) {
+      console.log("Save Error:", err);
+    }
   };
 
   return (
-    <div className="create-note-container">
-      <h1 className="create-heading">Create a New Note</h1>
+    <div className="editor-container">
 
-      <div className="create-form">
-        <input
-          type="text"
-          placeholder="Enter Note Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+      <div className="editor-main">
+        <div className="editor-box">
+          <input
+            className="title-input"
+            placeholder="Note title..."
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
 
-        <textarea
-          placeholder="Write your note here..."
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
+          {/* --------- Toolbar --------- */}
+          <div className="toolbar">
+            <button onClick={() => exec("bold")}>B</button>
+            <button onClick={() => exec("italic")}>I</button>
+            <button onClick={() => exec("underline")}>U</button>
+            <button onClick={() => exec("formatBlock", "<h1>")}>H1</button>
+            <button onClick={() => exec("formatBlock", "<h2>")}>H2</button>
+            <button onClick={() => exec("formatBlock", "<h3>")}>H3</button>
+            <input
+              type="color"
+              value={highlightColor}
+              onChange={(e) => setHighlightColor(e.target.value)}
+            />
+            <button onClick={() => exec("highlight", highlightColor)}>
+              Highlight
+            </button>
+            <button onClick={() => exec("insertUnorderedList")}>• List</button>
+            <button
+              onClick={() =>
+                exec("createLink", prompt("Enter URL:", "https://"))
+              }
+            >
+              Link
+            </button>
+          </div>
 
-        <button onClick={handleSave}>Create Note</button>
+          {/* --------- Editor Area --------- */}
+          <motion.div
+            className="editor-area"
+            contentEditable
+            suppressContentEditableWarning
+            ref={editorRef}
+          ></motion.div>
+
+          {/* --------- Save/Clear Buttons --------- */}
+          <div className="editor-actions">
+            <button className="clear-btn" onClick={() => document.execCommand("removeFormat")}>
+              Clear
+            </button>
+            <button className="save-btn-box" onClick={saveNote}>
+              Save
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
-};
-
-export default CreateNote;
+}

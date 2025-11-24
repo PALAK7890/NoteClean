@@ -1,10 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
-dotenv.config();
+dotenv.config(); 
 
 const { connectDB } = require("../database_md/db");
-const authRoutes = require("./authorizaion/auth.js");
+const authRoutes = require("./authorizaion/auth");
 
 const app = express();
 app.use(express.json());
@@ -12,6 +12,7 @@ app.use(cors());
 
 connectDB();
 app.use("/api/auth", authRoutes);
+app.use("/api/notes", require("./routes/notesRoutes"));
 
 app.get("/", (req, res) => res.send("Backend Running...✨"));
 

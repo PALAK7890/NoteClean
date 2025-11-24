@@ -1,0 +1,126 @@
+/* ──────────────── GLOBAL ──────────────── */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  background: linear-gradient(90deg, rgba(173, 216, 255, 0.3), rgba(230, 210, 255, 0.3)); /* soft blue + lilac */
+}
+
+/* Main container */
+.home-container {
+  max-width: 1100px;
+  margin: 70px auto;
+  padding: 20px;
+}
+
+/* ──────────────── HEADING ──────────────── */
+.heading {
+  font-size: 40px;
+  font-weight: 700;
+  color: #5a4db7; /* deep lilac-blue */
+  text-align: center;
+  margin-bottom: 25px;
+  letter-spacing: -0.5px;
+}
+
+/* ──────────────── CREATE BUTTON ──────────────── */
+.create-btn {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 22px; /* slightly smaller */
+  background: #d4e4ff; /* soft baby blue */
+  border: 1px solid #b8cfff;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #3f2d72; /* deep lilac */
+  transition: 0.2s ease;
+  box-shadow: 0 3px 8px rgba(63, 45, 114, 0.1);
+}
+
+.create-btn:hover {
+  background: #c0d6ff; /* slightly darker blue on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(63, 45, 114, 0.15);
+}
+
+/* ──────────────── CATEGORY FILTER ──────────────── */
+.category-section {
+  margin: 35px 0;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.category-btn {
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: #f0f5ff; /* soft blue */
+  border: 1px solid #c8d4f5;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  color: #3f2d72; /* deep lilac */
+  transition: 0.2s ease;
+}
+
+.category-btn:hover {
+  background: #e1ecff; /* subtle hover */
+}
+
+.active-category {
+  background: #5a4db7; /* deep lilac-blue */
+  color: #fff;
+  border-color: #5a4db7;
+}
+
+/* ──────────────── NOTES GRID ──────────────── */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+  margin-top: 20px;
+}
+
+/* Note Card */
+.note-card {
+  background: #f0f2ff; /* soft lilac-blue card */
+  padding: 20px;
+  border-radius: 14px;
+  border: 1px solid #d0cfff;
+  box-shadow: 0 6px 16px rgba(63, 45, 114, 0.05);
+  transition: 0.25s ease;
+}
+
+.note-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(63, 45, 114, 0.1);
+}
+
+/* Note Title */
+.note-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #3f2d72; /* deep lilac */
+  margin-bottom: 8px;
+}
+
+/* Note Text */
+.note-text {
+  font-size: 15px;
+  color: #4f3f91; /* lilac-blue */
+  margin-bottom: 15px;
+}
+
+/* Category Tag */
+.note-category-tag {
+  display: inline-block;
+  padding: 6px 12px;
+  background: #e0e4ff; /* soft lilac-blue */
+  border-radius: 8px;
+  font-size: 13px;
+  color: #3f2d72;
+  border: 1px solid #c8d4f5;
+}

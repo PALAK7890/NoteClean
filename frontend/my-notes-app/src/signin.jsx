@@ -1,9 +1,10 @@
-import './App.css';
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import loginImg from './assests/login_photu.png';
 import googleLogo from './assests/ggl.png';
 import facebookLogo from './assests/fb.png';
+import './styling/signin.css';
 
 const Signin = () => {
      const [formData, setFormData] = useState({
@@ -17,7 +18,7 @@ const Signin = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:8081/api/auth/signin", {
+      const res = await fetch("http://localhost:8080/api/auth/signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -62,7 +63,7 @@ const Signin = () => {
             </form>
 
             
-            <p>Already have an account? <a href='/'>Login here</a></p>
+            <p>Already have an account? <a href='/login'>Login here</a></p>
 
             <div className='social-login'>
               <img src={googleLogo} alt='Google' className='social-icon' />

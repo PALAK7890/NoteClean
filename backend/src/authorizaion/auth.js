@@ -55,9 +55,11 @@ auth.post ('/login',async(req,res)=>{
         const samePass = await bcrypt.compare(password, user.password);
         if (!samePass)
       return res.status(400).json({ message: "Invalid email or password" });
-
+    if (!process.env.JWT_SECRET) {
+      return res.status(500).json({ message: 'JWT secret is not set in .env' });
+    }
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-
+        
        return  res.status(200).json({ message: "Login successful", token });
 
     }catch(err){

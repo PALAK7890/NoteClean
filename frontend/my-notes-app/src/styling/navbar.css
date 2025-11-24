@@ -1,0 +1,94 @@
+/* Navbar.css */
+
+/* ──────────────── NAVBAR CONTAINER ──────────────── */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 30px;
+  background: linear-gradient(135deg, #dce7ff, #e8d9f9); /* soft baby blue + lilac */
+  border-bottom: 1px solid #c5c2e0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* ──────────────── BRAND / LOGO ──────────────── */
+.nav-brand {
+  font-size: 28px;
+  font-weight: 700;
+  color: #5a3f8c; /* deep lilac */
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.nav-brand:hover {
+  color: #3f2d72; /* slightly darker lilac on hover */
+}
+
+/* ──────────────── SEARCH BOX ──────────────── */
+.nav-search {
+  flex: 1;
+  margin: 0 25px;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 350px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid #c5c2e0;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  background: #f7f4fb; /* soft lilac-white */
+  color: #5a3f8c;
+}
+
+.search-input::placeholder {
+  color: #8c7db5;
+}
+
+.search-input:focus {
+  border-color: #5a3f8c;
+  box-shadow: 0 0 8px rgba(90,63,140,0.2);
+}
+
+/* ──────────────── LINKS ──────────────── */
+.nav-links {
+  display: flex;
+  gap: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #5a3f8c;
+}
+
+.nav-links span {
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: 0.2s ease, transform 0.2s ease;
+}
+
+.nav-links span:hover {
+  background: #e8d9f9; /* subtle lilac background on hover */
+  color: #3f2d72; /* dark lilac text */
+  transform: translateY(-2px);
+}
+
+/* ──────────────── RESPONSIVE ──────────────── */
+@media (max-width: 800px) {
+  .nav-search {
+    display: none;
+  }
+
+  .nav-links {
+    gap: 12px;
+    font-size: 14px;
+  }
+
+  .nav-brand {
+    font-size: 24px;
+  }
+}

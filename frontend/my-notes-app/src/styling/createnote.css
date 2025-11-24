@@ -1,0 +1,144 @@
+/* --------- Full Page Container --------- */
+.editor-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+  padding: 0;
+  margin: 0;
+  height: 100vh;             /* full screen height */
+  width: 100vw;              /* full screen width */
+  background: #e6f0ff;       /* baby blue background */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+}
+
+/* --------- Editor Box Full Page --------- */
+.editor-box {
+  background: #f3e6ff;       /* lilac */
+  width: 90vw;                /* almost full width */
+  height: 90vh;               /* almost full height */
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* --------- Header --------- */
+.editor-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  text-align: center;
+  color: #4b0082; /* deep lilac */
+}
+
+/* --------- Title Input --------- */
+.title-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1.1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+/* --------- Toolbar --------- */
+.toolbar {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  margin-bottom: 12px;
+  overflow-x: auto;
+}
+
+.toolbar button,
+.toolbar input[type="color"] {
+  padding: 8px 14px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #c0dbf6; /* baby blue */
+  cursor: pointer;
+  flex-shrink: 0;      
+  width: auto;            
+  min-width: 50px;       
+  height: 38px;          
+}
+
+.toolbar button:hover,
+.toolbar input[type="color"]:hover {
+  background: #a8d0ff; 
+}
+
+/* --------- Editor Area --------- */
+.editor-area {
+  flex: 1;                   /* take remaining space */
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 1rem;
+  background: #fff;
+  overflow-y: auto;
+  outline: none;
+  box-sizing: border-box;
+}
+
+/* --------- Save/Clear Buttons --------- */
+.editor-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.clear-btn,
+.save-btn-box {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+.clear-btn {
+  background: #ffb6b6; 
+  color: #fff;
+}
+
+.clear-btn:hover {
+  background: #e04848;
+}
+
+.save-btn-box {
+  background: #91cef7; 
+  color: #fff;
+}
+
+.save-btn-box:hover {
+  background: #399eff;
+}
+
+/* --------- Scrollbars --------- */
+.editor-area::-webkit-scrollbar,
+.toolbar::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.editor-area::-webkit-scrollbar-thumb,
+.toolbar::-webkit-scrollbar-thumb {
+  background: #b0b0b0;
+  border-radius: 3px;
+}
+
+.editor-area::-webkit-scrollbar-track,
+.toolbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
