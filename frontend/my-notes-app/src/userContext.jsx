@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from "react";
 
 export const UserContext = createContext();
 
@@ -6,9 +6,12 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const name = localStorage.getItem('name');
-    if (token && name) setUser({ name, token });
+    const username = localStorage.getItem("username");
+    const email = localStorage.getItem("email");
+
+    if (username) {
+      setUser({ username, email });
+    }
   }, []);
 
   return (

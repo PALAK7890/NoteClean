@@ -15,9 +15,9 @@ const Footer = () => {
 
 
       <div class="social-icons">
-        <a href="https://github.com/" target="_blank" class="social github">G</a>
-        <a href="https://instagram.com/" target="_blank" class="social insta">I</a>
-        <a href="https://linkedin.com/" target="_blank" class="social linkedin">L</a>
+        <a href="https://github.com/" target="_blank" class="social github">GitHub</a>
+        <a href="https://instagram.com/" target="_blank" class="social insta">Insta</a>
+        <a href="https://linkedin.com/" target="_blank" class="social linkedin">Linkden</a>
       </div>
     </div>
 
@@ -27,7 +27,7 @@ const Footer = () => {
         <li><a href="#">Home</a></li>
         <li><a href="#">Notes</a></li>
         <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+      
       </ul>
     </div>
 

@@ -1,97 +1,90 @@
-import { useNavigate } from 'react-router-dom';
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import Navbar from './navbar';
-import Footer from './footer';
-import "./styling/home.css"
+import { useNavigate } from "react-router-dom";
+import "./styling/home.css";
+import doodle from "./assests/doodle.png";
+import Footer from "./footer";
 
 const Home = () => {
   const navigate = useNavigate();
+  const [user, setUser] = useState("");
+  const [notes, setNotes] = useState([]);
 
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  useEffect(() => {
+    const username = localStorage.getItem("username");
+    if (username) setUser(username);
 
-  const notes = [
-    { id: 1, title: "Work Plan", text: "Office tasks...", category: "Work" },
-    { id: 2, title: "Study Notes", text: "React hooks summary...", category: "Study" },
-    { id: 3, title: "Personal Goals", text: "Morning routine...", category: "Personal" },
-  ];
+    fetchNotes();
+  }, []);
 
-  const filteredNotes =
-    selectedCategory === "All"
-      ? notes
-      : notes.filter((note) => note.category === selectedCategory);
+  const fetchNotes = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await fetch("http://localhost:8080/api/notes", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-const handleCreateNote = () => {
-  const token = localStorage.getItem("token");  
+      const data = await res.json();
+      setNotes(data.notes || []);
+    } catch (err) {
+      console.log("Error fetching notes:", err);
+    }
+  };
 
-  if (!token) {
-    alert("You must be logged in to create a note!");
-    return navigate("/login");
-  }
-
-  navigate("/create");
-};
+  const handleCreateNote = () => {
+    if (!localStorage.getItem("token")) return navigate("/login");
+    navigate("/create");
+  };
 
   return (
     <>
-      <Navbar />
-      <div className="home-container">
+      <div className="dashboard-container">
 
-        <motion.h1
-          className="heading"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          Notes App
-        </motion.h1>
+       <div className="hero-box">
+  <div className="hero-left">
+    <h1>Welcome, {user?.username ? user.username : "User"} 👋</h1>
+    <p className="hero-subtitle">Ready to write something today?</p>
+  </div>
 
-        <motion.button
-          className="create-btn"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={handleCreateNote}
-        >
-          + Create New Note
-        </motion.button>
+  <div className="hero-right">
+    <img src={doodle} alt="hero-img" className="hero-img" />
+  </div>
 
-        {/* -----------------------
-           CATEGORY FILTER UI
-        ------------------------ */}
-        <div className="category-section">
-          {["All", "Work", "Personal", "Study", "Important"].map((cat) => (
-            <button
-              key={cat}
-              className={`category-btn ${
-                selectedCategory === cat ? "active-category" : ""
-              }`}
-              onClick={() => setSelectedCategory(cat)}
-            >
-              {cat}
-            </button>
-          ))}
+ 
+  
+</div>
+<button className="create-button" onClick={handleCreateNote}>
+    + Create New Note
+  </button>
+        
+
+        {/* RECENT NOTES TITLE */}
+        <h2 className="section-heading">Recent Notes</h2>
+
+        {/* HORIZONTAL SCROLL NOTES */}
+        <div className="notes-scroll-container">
+          {notes.length === 0 ? (
+            <p className="no-notes">No notes yet… Create one!</p>
+          ) : (
+            notes.map((note) => (
+              <motion.div
+                key={note._id}
+                className="note-card"
+                whileHover={{ scale: 1.03 }}
+              >
+                <h3 className="note-heading">{note.title}</h3>
+                <p className="note-preview">
+                  {note.content.slice(0, 90)}...
+                </p>
+              </motion.div>
+            ))
+          )}
         </div>
 
-        {/* -----------------------
-           FILTERED NOTES LIST
-        ------------------------ */}
-        <div className="notes-grid">
-          {filteredNotes.map((note, i) => (
-            <motion.div
-              key={note.id}
-              className="note-card"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <h2 className="note-title">{note.title}</h2>
-              <p className="note-text">{note.text}</p>
-              <span className="note-category-tag">{note.category}</span>
-            </motion.div>
-          ))}
-        </div>
-
+       
+        
       </div>
+
       <Footer />
     </>
   );

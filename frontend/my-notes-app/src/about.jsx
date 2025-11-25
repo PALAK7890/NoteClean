@@ -7,7 +7,7 @@ import "./styling/about.css"
 const About = () => {
   return (
     <>
-      <Navbar />
+    
 
       <motion.div
         className="about-container"

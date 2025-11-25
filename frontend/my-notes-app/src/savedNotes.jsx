@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { UserContext } from '../context/UserContext';
+import { UserContext } from './userContext';
 
 export default function SavedNotes() {
   const { user } = useContext(UserContext);

@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import './styling/login.css'
 import { useNavigate } from 'react-router-dom';
-import loginImg from './assests/login_photu.png';
+
 import googleLogo from './assests/ggl.png';
 import facebookLogo from './assests/fb.png';
 

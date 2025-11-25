@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import loginImg from './assests/login_photu.png';
+
 import googleLogo from './assests/ggl.png';
 import facebookLogo from './assests/fb.png';
 import './styling/signin.css';
@@ -30,7 +30,7 @@ const Signin = () => {
 
       if (res.ok) {
         alert("Signup successful!")
-        navigate("/");
+        navigate("/profile");
       } else {
         alert(data.message);
       }

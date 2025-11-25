@@ -1,126 +1,169 @@
-/* ──────────────── GLOBAL ──────────────── */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Inter", system-ui, sans-serif;
-  background: linear-gradient(90deg, rgba(173, 216, 255, 0.3), rgba(230, 210, 255, 0.3)); /* soft blue + lilac */
+
+.dashboard-container {
+  width: 90%;
+  margin: auto;
+  margin-top: 40px;
+  font-family: "Poppins", sans-serif;
 }
 
-/* Main container */
-.home-container {
-  max-width: 1100px;
-  margin: 70px auto;
-  padding: 20px;
-}
-
-/* ──────────────── HEADING ──────────────── */
-.heading {
-  font-size: 40px;
-  font-weight: 700;
-  color: #5a4db7; /* deep lilac-blue */
-  text-align: center;
-  margin-bottom: 25px;
-  letter-spacing: -0.5px;
-}
-
-/* ──────────────── CREATE BUTTON ──────────────── */
-.create-btn {
-  display: block;
-  margin: 0 auto;
-  padding: 10px 22px; /* slightly smaller */
-  background: #d4e4ff; /* soft baby blue */
-  border: 1px solid #b8cfff;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  color: #3f2d72; /* deep lilac */
-  transition: 0.2s ease;
-  box-shadow: 0 3px 8px rgba(63, 45, 114, 0.1);
-}
-
-.create-btn:hover {
-  background: #c0d6ff; /* slightly darker blue on hover */
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(63, 45, 114, 0.15);
-}
-
-/* ──────────────── CATEGORY FILTER ──────────────── */
-.category-section {
-  margin: 35px 0;
+.hero-box {
+  position: relative;
+  background: #f0f4ff;       
+  border-radius: 22px;
+ padding: 60px 40px 80px;
+  margin-bottom: 80px;     
   display: flex;
-  justify-content: center;
-  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 200px;        
+  overflow: visible;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
 }
 
-.category-btn {
-  padding: 10px 16px;
-  border-radius: 10px;
-  background: #f0f5ff; /* soft blue */
-  border: 1px solid #c8d4f5;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 500;
-  color: #3f2d72; /* deep lilac */
-  transition: 0.2s ease;
+
+.hero-left h1 {
+  font-size: 34px;
+  font-weight: 700;
+  margin: 0;
+  color: #4b3cc4;         
 }
 
-.category-btn:hover {
-  background: #e1ecff; /* subtle hover */
+.hero-left p {
+  font-size: 18px;
+  color: #555;
+  margin-top: 10px;
 }
 
-.active-category {
-  background: #5a4db7; /* deep lilac-blue */
-  color: #fff;
-  border-color: #5a4db7;
+
+.hero-right {
+  position: absolute;
+  right: -70px;
+  top: -70px;
+  z-index: 5;
 }
 
-/* ──────────────── NOTES GRID ──────────────── */
-.notes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 22px;
-  margin-top: 20px;
+.hero-img {
+  width: 30vw;
+  height: auto;
+  pointer-events: none;
+  transform: rotate(2deg);
 }
 
-/* Note Card */
-.note-card {
-  background: #f0f2ff; /* soft lilac-blue card */
-  padding: 20px;
+
+.create-button {
+  display: block;
+  margin: auto;
+  margin-top: -40px;  
+  padding: 14px 34px;
+  background: #6a3df5;
+  color: white;
+  border: none;
   border-radius: 14px;
-  border: 1px solid #d0cfff;
-  box-shadow: 0 6px 16px rgba(63, 45, 114, 0.05);
+  max-width: 10vw;
+  height: auto;
+  cursor: pointer;
+  font-size: 12px;
+  box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.15);
+  transition: 0.25s ease;
+}
+
+.create-button:hover {
+  transform: scale(1.06);
+}
+
+/* -----------------------------------
+        SECTION HEADING
+----------------------------------- */
+.section-heading {
+  margin-top: 40px;
+  font-size: 26px;
+  color: #4a4a6a;
+  font-weight: 600;
+  text-align: left;
+}
+
+/* -----------------------------------
+        HORIZONTAL NOTES SCROLLER
+----------------------------------- */
+.notes-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px 0;
+  margin-bottom: 40px;
+}
+
+.notes-scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.notes-scroll-container::-webkit-scrollbar-thumb {
+  background: #cfc2ff;    /* Soft lilac */
+  border-radius: 10px;
+}
+
+/* -----------------------------------
+         NOTE CARD
+----------------------------------- */
+.note-card {
+  min-width: 260px;
+  background: white;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-left: 6px solid #b19bff;   /* lilac edge */
   transition: 0.25s ease;
 }
 
 .note-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 22px rgba(63, 45, 114, 0.1);
+  transform: translateY(-5px);
 }
 
-/* Note Title */
-.note-title {
+.note-heading {
   margin: 0;
   font-size: 20px;
-  font-weight: 600;
-  color: #3f2d72; /* deep lilac */
-  margin-bottom: 8px;
+  color: #4b3cc4;
 }
 
-/* Note Text */
-.note-text {
+.note-preview {
+  margin-top: 10px;
+  color: #555;
   font-size: 15px;
-  color: #4f3f91; /* lilac-blue */
-  margin-bottom: 15px;
 }
 
-/* Category Tag */
-.note-category-tag {
-  display: inline-block;
-  padding: 6px 12px;
-  background: #e0e4ff; /* soft lilac-blue */
-  border-radius: 8px;
-  font-size: 13px;
-  color: #3f2d72;
-  border: 1px solid #c8d4f5;
+/* -----------------------------------
+          EMPTY NOTE MESSAGE
+----------------------------------- */
+.no-notes {
+  color: #666;
+  font-size: 17px;
+  padding-left: 10px;
+}
+
+/* -----------------------------------
+         RESPONSIVE FIXES
+----------------------------------- */
+@media (max-width: 900px) {
+  .hero-img {
+    width: 35vw;
+  }
+  
+  .inside-hero {
+    bottom: -25px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-box {
+    padding: 25px;
+    min-height: 160px;
+  }
+
+  .hero-img {
+    width: 45vw;
+  }
+
+  .hero-left h1 {
+    font-size: 26px;
+  }
 }

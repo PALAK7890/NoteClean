@@ -7,6 +7,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+      localStorage.removeItem("username");
     alert("Logged out successfully!");
     navigate("/login");
   };
@@ -32,7 +33,10 @@ const Navbar = () => {
             <span onClick={() => navigate("/signin")}>Sign Up</span>
           </>
         ) : (
-          <span onClick={handleLogout}>Log Out</span>
+          <>
+            <span onClick={() => navigate("/profile")}>Profile</span>
+            <span onClick={handleLogout}>Log Out</span>
+          </>
         )}
       </div>
     </nav>

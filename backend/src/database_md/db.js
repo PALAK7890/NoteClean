@@ -46,11 +46,11 @@ const noteSchema = new mongoose.Schema(
 const User = mongoose.model("User", userSchema);
 const Note = mongoose.model("Note", noteSchema);
 
-
 const connectDB = async () => {
   try {
+ 
     await mongoose.connect(process.env.MONGO_URI);
-    console.log("Your DataBase Is Connected");
+    console.log("Database Connected!");
   } catch (error) {
     console.log("DB Error:", error);
   }
