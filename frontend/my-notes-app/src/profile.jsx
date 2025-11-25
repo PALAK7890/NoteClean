@@ -10,7 +10,7 @@ export default function Profile() {
   return (
     <div className="profile-container">
 
-      {/* LEFT SIDE: USER IMAGE + INFO */}
+   
       <div className="profile-left">
         <img
           src={profile}

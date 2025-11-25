@@ -70,7 +70,15 @@ auth.post ('/login',async(req,res)=>{
     );
 
         
-       return  res.status(200).json({ message: "Login successful", token });
+      return res.status(200).json({
+  message: "Login successful",
+  token,
+  user: {
+    id: user._id,
+    username: user.username,
+    email: user.email
+  }
+});
 
     }catch(err){
         console.log(err)

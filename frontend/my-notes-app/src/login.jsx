@@ -13,32 +13,36 @@ const Login =()=>{
   });
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+const handleLogin = async (e) => {
+  e.preventDefault();
 
-    try {
-      const res = await fetch("http://localhost:8080/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-        mode: "cors"
-      });
+  try {
+    const res = await fetch("http://localhost:8080/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
 
-      const data = await res.json();
-      console.log(data);
+    const data = await res.json();
+    console.log(data);
 
-      if (res.ok) {
-        alert("✅ Login successful!");
-        localStorage.setItem("token", data.token);
-        navigate("/");
-      } else {
-        alert(`⚠️ ${data.message}`);
-      }
-    } catch (err) {
-      console.error("Error:", err);
-      alert("❌ Something went wrong."+err.message);
+    if (res.ok) {
+      alert("✅ Login successful!");
+
+    
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("username", data.user.username);
+      localStorage.setItem("email", data.user.email);
+
+      navigate("/");
+    } else {
+      alert(`⚠️ ${data.message}`);
     }
-  };
+  } catch (err) {
+    alert("❌ Something went wrong: " + err.message);
+  }
+};
+
 
   const handleClickGgl =()=>{ alert('Google Login') }
   const handleClickFb =()=>{ alert('Facebook Login') }

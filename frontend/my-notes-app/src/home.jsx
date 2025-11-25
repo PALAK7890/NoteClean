@@ -12,7 +12,7 @@ const Home = () => {
 
   useEffect(() => {
     const username = localStorage.getItem("username");
-    if (username) setUser(username);
+    if (username) setUser({ username });;
 
     fetchNotes();
   }, []);
@@ -42,7 +42,7 @@ const Home = () => {
 
        <div className="hero-box">
   <div className="hero-left">
-    <h1>Welcome, {user?.username ? user.username : "User"} 👋</h1>
+   <h1>Welcome, {user?.username || "User"} 👋</h1>
     <p className="hero-subtitle">Ready to write something today?</p>
   </div>
 
