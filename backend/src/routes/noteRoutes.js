@@ -18,7 +18,7 @@ router.post("/create", authMiddleware, async (req, res) => {
 router.get("/", authMiddleware, async (req, res) => {
   try {
     const notes = await Note.find({ userId: req.user._id });
-    res.json(notes);
+    res.json({notes});
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

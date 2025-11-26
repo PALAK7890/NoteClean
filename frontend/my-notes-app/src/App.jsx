@@ -9,7 +9,7 @@ import About from './about';
 import Profile from './profile';
 import SavedNotes from './savedNotes';
 import { UserProvider } from './userContext'; 
-
+import GoogleCallback from './googleCallback';
 import './App.css';
 
 function App() {
@@ -25,6 +25,8 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/saved-notes" element={<SavedNotes />} />
           <Route path="/about" element={<About />} />
+          <Route path="/login/google/callback" element={<GoogleCallback />} />
+
         </Routes>
       </BrowserRouter>
     </UserProvider>

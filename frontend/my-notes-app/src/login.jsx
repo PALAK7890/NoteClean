@@ -44,7 +44,39 @@ const handleLogin = async (e) => {
 };
 
 
-  const handleClickGgl =()=>{ alert('Google Login') }
+const handleClickGgl = () => {
+  /* Load Google Login */
+  window.google.accounts.id.initialize({
+    client_id: "65648230034-6hkvchec5701cf8p2p6e9cv4rv8qm9l8f.apps.googleusercontent.com",
+
+    callback: async (response) => {
+      // send token to backend
+      const res = await fetch("http://localhost:8080/api/auth/google-login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ credential: response.credential }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("username", data.user.username);
+        localStorage.setItem("email", data.user.email);
+
+        alert("Google Login Successful!");
+        navigate("/");
+      } else {
+        alert("Google Login Failed!");
+      }
+    },
+  });
+
+  // Opens Google Login Popup ⚡
+  window.google.accounts.id.prompt();
+};
+
+
   const handleClickFb =()=>{ alert('Facebook Login') }
 
   return(
@@ -81,6 +113,7 @@ const handleLogin = async (e) => {
 
             <div className="social-login">
               <img src={googleLogo} alt="Google" className='social-icon' onClick={handleClickGgl}/>
+  
               <img src={facebookLogo} alt="Facebook" className='social-icon' onClick={handleClickFb}/>
             </div>
 

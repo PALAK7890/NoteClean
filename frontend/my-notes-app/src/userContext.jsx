@@ -5,14 +5,13 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const username = localStorage.getItem("username");
-    const email = localStorage.getItem("email");
-
-    if (username) {
-      setUser({ username, email });
-    }
-  }, []);
+useEffect(() => {
+  setUser({
+    username: localStorage.getItem("username"),
+    email: localStorage.getItem("email"),
+    token: localStorage.getItem("token"),
+  });
+}, []);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
